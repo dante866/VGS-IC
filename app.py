@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 from flask import render_template, flash, redirect
 import requests
 
-
+# URL value modified from text document and a video that shows the Support OrgID
 url = 'https://tntsfeqzp4a.sandbox.verygoodproxy.com/post'
 headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
 
@@ -14,14 +14,15 @@ headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
 app = Flask(__name__)
 app.config.from_object(Config)
 
-
+# Initialization of Flask dataform for the web-form
 class DataForm(FlaskForm):
     CCNum = StringField('Credit Card Number', validators=[DataRequired()])
     Expire = StringField('Expiration Date (MM-YY)', validators=[DataRequired()])
     CVV = StringField('CVV Value', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-
+# Flask uses "routes" to determine on what page items are rendered.
+# Wasn't entirely sure how to add an onclick event to this Flask form.
 @app.route("/", methods=['Get', 'POST'])
 def submit():
     form = DataForm()
