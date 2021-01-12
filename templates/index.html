@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>VGS Test</title>
+  <meta name="description" content="VGS Technical Assessment">
+  <meta name="author" content="C. Meyer">
+
+  <link rel="stylesheet" href="main.css">
+
+</head>
+
+<body>
+    <script type="text/javascript" src="https://js.verygoodvault.com/vgs-collect/2.2.1/vgs-collect.js"></script>
+    {% block content %}
+            <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    <h1>Please fill these fields out.</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.CCNum.label }}<br>
+            {{ form.CCNum(size=20) }}
+        </p>
+        <p>
+            {{ form.Expire.label }}<br>
+            {{ form.Expire(size=6) }}
+        </p>
+        <p>
+            {{ form.CVV.label }}<br>
+            {{ form.CVV(size=5) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+
+    </form>
+    {% endblock %}
+
+
+</body>
+</html>
